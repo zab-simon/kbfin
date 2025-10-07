@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <title>CRO Dashboard</title>
+
+    <!-- React 18 + ReactDOM + Babel -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script src="https://unpkg.com/recharts/umd/Recharts.min.js"></script>
+
+    <!-- TailwindCSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+    <!-- Custom Animations -->
+    <style>
+      @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      .animate-fadeInUp { animation: fadeInUp 1s ease-out forwards; }
+      .delay-1 { animation-delay: 0.2s; }
+      .delay-2 { animation-delay: 0.4s; }
+      .delay-3 { animation-delay: 0.6s; }
+      .delay-4 { animation-delay: 0.8s; }
+      .delay-5 { animation-delay: 1s; }
+    </style>
+  </head>
+  <body class="bg-gradient-to-br from-purple-600 via-blue-600 to-blue-700 p-8">
+    <div id="root"></div>
+
+    <script type="text/babel">
+      const { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } = Recharts;
+
+      const projectionData = [
+        { year: 1, revenue: 2332.8 },
+        { year: 2, revenue: 2519.4 },
+        { year: 3, revenue: 2721.0 },
+        { year: 4, revenue: 2936.3 },
+        { year: 5, revenue: 3173.7 },
+        { year: 6, revenue: 3427.6 },
+        { year: 7, revenue: 3701.9 },
+        { year: 8, revenue: 3998.0 },
+        { year: 9, revenue: 4317.9 },
+        { year: 10, revenue: 4663.3 }
+      ];
+
+      function CRODashboard() {
+        return (
+          <div className="max-w-7xl mx-auto text-white">
+            <h1 className="text-4xl font-bold mb-8 text-center animate-fadeInUp">CRO Analysis & Optimization Report</h1>
+
+            {/* === Three Columns === */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+              <div className="bg-red-500 rounded-lg p-6 shadow-xl animate-fadeInUp delay-1">
+                <h2 className="text-2xl font-bold mb-4">🔴 Основные проблемы</h2>
+                <ul className="space-y-2 text-sm">
+                  <li>• Нет моментального калькулятора платежа/лимита</li>
+                  <li>• CTA не липкий</li>
+                  <li>• Слишком много текста</li>
+                  <li>• Нет гарантий в Hero</li>
+                  <li>• Нет микро-соцдоказательств</li>
+                  <li>• Нет click-to-call/WhatsApp sticky</li>
+                  <li>• LP не релевантны регионам</li>
+                </ul>
+              </div>
+
+              <div className="bg-green-500 rounded-lg p-6 shadow-xl animate-fadeInUp delay-2">
+                <h2 className="text-2xl font-bold mb-4">🟢 Решения</h2>
+                <ul className="space-y-2 text-sm">
+                  <li>• Hero-микрокалькулятор</li>
+                  <li>• Sticky CTA + WhatsApp/Call</li>
+                  <li>• Trust-бейджи и отзывы</li>
+                  <li>• Упрощённая форма</li>
+                  <li>• Визуальные блоки/иконки</li>
+                  <li>• LP по регионам/языкам</li>
+                  <li>• Чат/бот</li>
+                </ul>
+              </div>
+
+              <div className="bg-orange-500 rounded-lg p-6 shadow-xl animate-fadeInUp delay-3">
+                <h2 className="text-2xl font-bold mb-4">🟠 Рекомендации</h2>
+                <ul className="space-y-2 text-sm">
+                  <li>• Hero-секция + форма</li>
+                  <li>• Интерактивный калькулятор</li>
+                  <li>• Кейсы успеха</li>
+                  <li>• FAQ</li>
+                  <li>• Блог/статьи (SEO)</li>
+                  <li>• Лид-магниты</li>
+                  <li>• Онлайн-чат</li>
+                </ul>
+              </div>
+            </div>
+
+            {/* === Priorities === */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+              <div className="bg-white rounded-lg p-6 shadow-xl text-gray-800 animate-fadeInUp delay-2">
+                <h3 className="text-xl font-bold mb-4">🔥 Высокий приоритет</h3>
+                <ol className="list-decimal list-inside space-y-1">
+                  <li>Новый заголовок и CTA</li>
+                  <li>Контактная информация</li>
+                  <li>Адаптивность</li>
+                </ol>
+              </div>
+              <div className="bg-white rounded-lg p-6 shadow-xl text-gray-800 animate-fadeInUp delay-3">
+                <h3 className="text-xl font-bold mb-4">⚡ Средний приоритет</h3>
+                <ol className="list-decimal list-inside space-y-1" start="4">
+                  <li>Дизайн и структура</li>
+                  <li>Социальные доказательства</li>
+                  <li>Калькулятор доходности</li>
+                </ol>
+              </div>
+              <div className="bg-white rounded-lg p-6 shadow-xl text-gray-800 animate-fadeInUp delay-4">
+                <h3 className="text-xl font-bold mb-4">📝 Низкий приоритет</h3>
+                <ol className="list-decimal list-inside space-y-1" start="7">
+                  <li>Контент-маркетинг</li>
+                  <li>Доп. инструменты</li>
+                  <li>Аналитика</li>
+                </ol>
+              </div>
+            </div>
+
+            {/* === Results & Projection === */}
+            <div className="bg-black rounded-lg p-6 shadow-2xl border-2 border-orange-500 mb-8 animate-fadeInUp delay-5">
+              <h2 className="text-2xl font-bold text-orange-500 mb-6 border-b-2 border-orange-500 pb-2">
+                📊 РЕЗУЛЬТАТЫ И ПРОГНОЗ
+              </h2>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                <div className="border border-gray-700 p-4 rounded">
+                  <div className="text-gray-400 text-xs uppercase mb-1">Current</div>
+                  <div className="text-white text-lg font-bold">CVR 1.0%</div>
+                  <div className="text-gray-300 text-sm">1,200 лидов / 300 сделок</div>
+                  <div className="text-orange-500 text-xl font-bold mt-2">1,200K€</div>
+                </div>
+                <div className="border border-gray-700 p-4 rounded">
+                  <div className="text-gray-400 text-xs uppercase mb-1">Projected</div>
+                  <div className="text-white text-lg font-bold">CVR 1.8%</div>
+                  <div className="text-gray-300 text-sm">2,160 лидов / 540 сделок</div>
+                  <div className="text-green-400 text-xl font-bold mt-2">2,160K€</div>
+                </div>
+                <div className="border border-orange-500 p-4 rounded bg-orange-900 bg-opacity-20">
+                  <div className="text-orange-400 text-xs uppercase mb-1">Uplift</div>
+                  <div className="text-white text-3xl font-bold">+80%</div>
+                  <div className="text-orange-300 text-2xl font-bold mt-2">+960K€/год</div>
+                </div>
+              </div>
+
+              {/* Chart */}
+              <div className="bg-gray-900 rounded p-4 mb-6" style={{ height: '300px' }}>
+                <ResponsiveContainer width="100%" height="100%">
+                  <LineChart data={projectionData}>
+                    <CartesianGrid strokeDasharray="3 3" stroke="#333" />
+                    <XAxis dataKey="year" stroke="#999" />
+                    <YAxis stroke="#999" />
+                    <Tooltip contentStyle={{ backgroundColor: '#111', border: '1px solid #ff8800' }} />
+                    <Line type="monotone" dataKey="revenue" stroke="#ff8800" strokeWidth={3} dot />
+                  </LineChart>
+                </ResponsiveContainer>
+              </div>
+
+              {/* Table of Key Years */}
+              <div className="grid grid-cols-2 md:grid-cols-5 gap-3 text-xs">
+                <div className="text-center">
+                  <div className="text-gray-500">Year 1</div>
+                  <div className="text-orange-400 font-bold">2,332.8K€</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-gray-500">Year 3</div>
+                  <div className="text-orange-400 font-bold">2,721.0K€</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-gray-500">Year 5</div>
+                  <div className="text-orange-400 font-bold">3,173.7K€</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-gray-500">Year 7</div>
+                  <div className="text-orange-400 font-bold">3,701.9K€</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-gray-500">Year 10</div>
+                  <div className="text-green-400 font-bold">4,663.3K€</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      }
+
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(<CRODashboard />);
+    </script>
+  </body>
+</html>
